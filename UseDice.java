@@ -22,11 +22,25 @@ public class UseDice {
 
 	public static void main(String[] args) {
 		Dice cup = new Dice();   // Make an instance of Dice
-		Scanner keyboard=new Scanner(System.in);   // Make an instance of keyboard Scanner
+		Scanner in=new Scanner(System.in);   // Make an instance of keyboard Scanner
 		System.out.println("Welcome to the diceroll program");
 		System.out.println("How many times do you want to roll the dice?");
-		int n = keyboard.nextInt();  // Read integer
+		int n;
+		while(true) {
+			if(in.hasNextDouble()) {
+				n = in.nextInt();
+				if(n <= 0)
+				System.out.print("ugyldigt input \nIndtast et tal. pr�v igen: ");
+				else break;		
+			}
+			else {
+				System.out.print("ugyldigt input \nIndtast et tal. pr�v igen: ");
+				in.next();				
+			}
+			
+		}
+		
 		cup.rollMultiple(n);         // Roll the dice n times
-		keyboard.close();            // Close the scanner
+		in.close();            // Close the scanner
 	}
 }
